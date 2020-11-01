@@ -1,1 +1,1 @@
-web: build/install/demo/bin/demo
+web: build/install/backend/bin/backend
