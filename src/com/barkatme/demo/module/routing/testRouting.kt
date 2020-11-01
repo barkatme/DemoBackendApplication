@@ -13,10 +13,4 @@ fun Routing.testRouting() {
             }
         }
     }
-
-    get("/"){
-        call.respondText {
-            "BarkAtMe Demo Backend Application"
-        }
-    }
 }
