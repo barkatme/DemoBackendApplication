@@ -11,6 +11,9 @@ import io.ktor.auth.jwt.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 import java.util.*
 
 private open class SimpleJWT(secret: String) {
@@ -18,6 +21,13 @@ private open class SimpleJWT(secret: String) {
     val verifier: JWTVerifier = JWT.require(algorithm).build()
     fun sign(email: String): String = JWT.create().withClaim("email", email).sign(algorithm)
 }
+
+@Serializable
+data class Token(@SerialName("token") val token: String)
+
+fun Token.asString() = Json {}.encodeToString(Token.serializer(), this)
+
+fun String.asToken() = Json {}.decodeFromString(Token.serializer(), this)
 
 fun Application.authModule() {
 
@@ -40,13 +50,11 @@ fun Application.authModule() {
     }
 
     routing {
-        route("/auth") {
-            post {
-                val post = call.receive<User>()
-                val user = users.getOrPut(post.email) { User(post.email, post.name) }
-                if (user.name != post.name) throw InvalidCredentialsException("name doesn't match")
-                call.respond(mapOf("token" to simpleJwt.sign(user.name)))
-            }
+        post("/auth") {
+            val post = call.receive<User>()
+            val user = users[post.email] ?: throw InvalidCredentialsException("user doesn't exists")
+            if (user.name != post.name) throw InvalidCredentialsException("name doesn't match")
+            call.respond(Token(simpleJwt.sign(user.name)).asString())
         }
     }
 }
