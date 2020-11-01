@@ -1,6 +1,6 @@
 package com.barkatme.demo
 
-import com.barkatme.demo.module.allModules
+import com.barkatme.demo.setup.allModules
 import io.ktor.http.*
 import kotlin.test.*
 import io.ktor.server.testing.*

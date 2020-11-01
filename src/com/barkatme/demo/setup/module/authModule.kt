@@ -1,4 +1,4 @@
-package com.barkatme.demo.module
+package com.barkatme.demo.setup.module
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
