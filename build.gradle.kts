@@ -13,7 +13,6 @@ version = "0.0.1"
 
 application {
     mainClassName = "com.barkatme.demo.MainKt"
-//    mainClassName = "io.ktor.server.netty.EngineMain"
 }
 
 repositories {
