@@ -12,8 +12,8 @@ group = "com.barkatme.demo"
 version = "0.0.1"
 
 application {
-//    mainClassName = "com.example.kotlinserver.AppKt"
-    mainClassName = "io.ktor.server.netty.EngineMain"
+    mainClassName = "com.barkatme.demo.MainKt"
+//    mainClassName = "io.ktor.server.netty.EngineMain"
 }
 
 repositories {
