@@ -12,7 +12,7 @@ import kotlinx.serialization.ExperimentalSerializationApi
 
 @Suppress("unused")
 @ExperimentalSerializationApi
-fun Application.configurator() {
+fun Application.configurator(@Suppress("UNUSED_PARAMETER") testing: Boolean = false) {
     supportModule()
     authModule()
     errorHandlerModule()
