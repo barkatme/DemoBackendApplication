@@ -12,7 +12,8 @@ group = "com.barkatme.demo"
 version = "0.0.1"
 
 application {
-    mainClassName = "io.ktor.server.netty.EngineMain"
+    mainClassName = "com.example.kotlinserver.AppKt"
+//    mainClassName = "io.ktor.server.netty.EngineMain"
 }
 
 repositories {
@@ -54,3 +55,7 @@ kotlin.sourceSets["test"].kotlin.srcDirs("test")
 
 sourceSets["main"].resources.srcDirs("resources")
 sourceSets["test"].resources.srcDirs("testresources")
+
+tasks.create("stage") {
+    dependsOn("installDist")
+}
