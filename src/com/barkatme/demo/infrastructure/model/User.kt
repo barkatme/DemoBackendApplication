@@ -1,4 +1,4 @@
-package com.barkatme.demo.model
+package com.barkatme.demo.infrastructure.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -15,8 +15,6 @@ data class User(
 fun User.asString(): String = json.encodeToString(serializer, this)
 
 fun String.asUser() = json.decodeFromString(serializer, this)
-
-
 
 private val json = Json {
     ignoreUnknownKeys = true

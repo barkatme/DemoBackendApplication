@@ -1,4 +1,4 @@
-package com.barkatme.demo.setup.module
+package com.barkatme.demo.infrastructure.module
 
 import io.ktor.application.*
 import io.ktor.features.*

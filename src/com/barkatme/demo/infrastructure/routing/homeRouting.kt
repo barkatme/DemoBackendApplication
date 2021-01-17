@@ -1,4 +1,6 @@
-package com.barkatme.demo.setup.routing
+@file:Suppress("DEPRECATION")
+
+package com.barkatme.demo.infrastructure.routing
 
 import io.ktor.application.*
 import io.ktor.html.*
@@ -40,11 +42,6 @@ fun Routing.homeRouting() {
                 }
                 p {
                     +"demo application to provide rest api and research features"
-                    p {
-                        i {
-                            +"swagger will be added in future"
-                        }
-                    }
                 }
             }
         }

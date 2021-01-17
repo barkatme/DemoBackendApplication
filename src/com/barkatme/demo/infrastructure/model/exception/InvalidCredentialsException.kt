@@ -1,4 +1,4 @@
-package com.barkatme.demo.model.exception
+package com.barkatme.demo.infrastructure.model.exception
 
 import java.lang.RuntimeException
 

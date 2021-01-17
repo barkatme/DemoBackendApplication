@@ -1,4 +1,4 @@
-package com.barkatme.demo.setup.routing
+package com.barkatme.demo.infrastructure.routing
 
 import io.ktor.application.*
 import io.ktor.auth.*

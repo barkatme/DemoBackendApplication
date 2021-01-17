@@ -1,10 +1,10 @@
-package com.barkatme.demo.setup.module
+package com.barkatme.demo.infrastructure.module
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
-import com.barkatme.demo.model.User
-import com.barkatme.demo.model.exception.InvalidCredentialsException
+import com.barkatme.demo.infrastructure.model.User
+import com.barkatme.demo.infrastructure.model.exception.InvalidCredentialsException
 import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.auth.jwt.*

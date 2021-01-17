@@ -1,6 +1,6 @@
-package com.barkatme.demo.setup.module
+package com.barkatme.demo.infrastructure.module
 
-import com.barkatme.demo.model.exception.InvalidCredentialsException
+import com.barkatme.demo.infrastructure.model.exception.InvalidCredentialsException
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
