@@ -24,7 +24,6 @@ import java.util.*
 
 @KtorExperimentalAPI
 fun Application.authModule(@Suppress("UNUSED_PARAMETER") testing: Boolean = false) {
-    DatabaseFactory.init()
     val simpleJwt: SimpleJWT = get()
 
     install(Authentication) {

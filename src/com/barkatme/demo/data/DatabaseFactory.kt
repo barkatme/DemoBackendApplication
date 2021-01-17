@@ -38,7 +38,6 @@ object DatabaseFactory {
         config.validate()
         return HikariDataSource(config)
     }
-
 }
 
 suspend fun <T> dbQuery(block: () -> T): T =
