@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.flow.mapNotNull
 
-fun Routing.testWebSocketRoute() {
-    webSocket("/test-socket") { // websocketSession
+fun Routing.chatWebSocket() {
+    webSocket("/chat") { // websocketSession
         incoming.consumeAsFlow().mapNotNull { it as? Frame.Text }.collect { frame ->
             val text = frame.readText()
             print("incoming message: $text")
