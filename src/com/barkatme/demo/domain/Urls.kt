@@ -6,6 +6,8 @@ object Urls {
     const val signUp = "/auth/sign_up"
     const val signOut = "/auth/sign_out"
 
+    const val currentUser = "/user"
+
     const val viewers = "viewers"
     const val viewersById = "viewers/{userId}"
     const val deleteViewer = "viewers/{userId}"

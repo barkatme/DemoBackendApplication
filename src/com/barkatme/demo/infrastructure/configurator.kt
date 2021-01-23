@@ -10,6 +10,7 @@ import com.barkatme.demo.infrastructure.module.supportModule
 import com.barkatme.demo.infrastructure.routing.homeRouting
 import com.barkatme.demo.infrastructure.routing.testRouting
 import com.barkatme.demo.infrastructure.module.webSocketsModule
+import com.barkatme.demo.infrastructure.routing.userRouting
 import com.barkatme.demo.infrastructure.routing.websocket.chatWebSocket
 import io.ktor.application.*
 import io.ktor.locations.*
@@ -46,6 +47,7 @@ fun Application.allRoutings() {
     routing {
         homeRouting()
         testRouting()
+        userRouting()
 
         chatWebSocket()
     }
