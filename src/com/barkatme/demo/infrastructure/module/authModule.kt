@@ -4,6 +4,7 @@ import com.auth0.jwt.exceptions.TokenExpiredException
 import com.barkatme.demo.data.DatabaseFactory
 import com.barkatme.demo.domain.Urls
 import com.barkatme.demo.domain.model.Credentials
+import com.barkatme.demo.domain.model.Token
 import com.barkatme.demo.domain.model.User
 import com.barkatme.demo.domain.usecase.auth.SignInUseCase
 import com.barkatme.demo.domain.usecase.auth.SignOutUseCase
@@ -67,14 +68,14 @@ fun Application.authModule(@Suppress("UNUSED_PARAMETER") testing: Boolean = fals
             val resultUser = signUpUseCase.signUp(userWithEmailAndPassword) {
                 simpleJwt.sign(userWithEmailAndPassword.email)
             }
-            call.respond(mapOf("token" to resultUser.token))
+            call.respond(Token(resultUser.token ?: throw Exception("token is null")))
         }
 
         get(Urls.signOut) {
             val currentUser = call.getUserIdPrincipal()?.name?.let { email -> getUserByEmailUseCase.getUser(email) }
                 ?: throw Exception("invalid token")
             val newToken = signOutUseCase.signOut(currentUser.email) { simpleJwt.sign(currentUser.email) }
-            call.respond(mapOf("token" to newToken))
+            call.respond(Token(newToken))
         }
     }
 }

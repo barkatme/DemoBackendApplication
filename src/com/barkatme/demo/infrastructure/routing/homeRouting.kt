@@ -2,9 +2,6 @@
 
 package com.barkatme.demo.infrastructure.routing
 
-import com.barkatme.demo.domain.model.User
-import com.barkatme.demo.domain.repository.UserRepository
-import com.barkatme.demo.domain.usecase.auth.SignUpUseCase
 import io.ktor.application.*
 import io.ktor.html.*
 import io.ktor.routing.*
@@ -13,16 +10,10 @@ import kotlinx.css.Color
 import kotlinx.css.TextAlign
 import kotlinx.css.em
 import kotlinx.html.*
-import org.koin.ktor.ext.get
 
 fun Routing.homeRouting() {
 
-    val signUpUseCase: SignUpUseCase = get()
-
     get("/") {
-
-        signUpUseCase.signUp(User(email = "testUser", passwordHash = "passwordHash")) { user -> user.passwordHash }
-
         call.respondHtml {
             head {
                 meta {
