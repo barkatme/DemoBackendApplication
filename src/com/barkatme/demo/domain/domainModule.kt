@@ -3,6 +3,8 @@ package com.barkatme.demo.domain
 import com.barkatme.demo.domain.usecase.auth.SignInUseCase
 import com.barkatme.demo.domain.usecase.auth.SignOutUseCase
 import com.barkatme.demo.domain.usecase.auth.SignUpUseCase
+import com.barkatme.demo.domain.usecase.chat.ListenChatMessagesUseCase
+import com.barkatme.demo.domain.usecase.chat.NewMessageUseCase
 import com.barkatme.demo.domain.usecase.role.GetRolePermissionsUseCase
 import com.barkatme.demo.domain.usecase.role.GetUserRoleListUseCase
 import com.barkatme.demo.domain.usecase.role.GetUserRolePermissionsUseCase
@@ -37,6 +39,10 @@ val domainModule = module {
     single { GetViewersByIdUseCase(get(), get(), get(), get()) }
     single { DeleteViewersByIdUseCase(get(), get(), get(), get()) }
     single { DeleteViewersUseCase(get(), get(), get(), get()) }
+
+    //chat
+    single { ListenChatMessagesUseCase(get()) }
+    single { NewMessageUseCase(get()) }
 
     //others (admin/additional info requests)
     single { GetUserRoleListUseCase(get()) }

@@ -16,10 +16,14 @@ import io.ktor.application.*
 import io.ktor.locations.*
 import io.ktor.routing.*
 import io.ktor.util.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.serialization.ExperimentalSerializationApi
 import org.koin.core.logger.PrintLogger
 import org.koin.ktor.ext.Koin
 
+@FlowPreview
+@ExperimentalCoroutinesApi
 @KtorExperimentalAPI
 @Suppress("unused")
 @ExperimentalSerializationApi

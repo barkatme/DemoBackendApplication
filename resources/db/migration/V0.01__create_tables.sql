@@ -58,3 +58,10 @@ create TABLE VIEWED_USER (
      FOREIGN KEY (viewed_user_id) REFERENCES USERS (id) ON DELETE CASCADE ON UPDATE CASCADE,
      UNIQUE (user_id, viewed_user_id)
 );
+
+create TABLE MESSAGE (
+    id serial primary key,
+    send_time timestamp not null default CURRENT_TIMESTAMP,
+    nickName varchar(100) not null,
+    text varchar(255) not null
+);
