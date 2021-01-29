@@ -14,7 +14,7 @@ fun Routing.userRouting() {
     val getUserByEmailUseCase: GetUserByEmailUseCase = get()
 
     authenticate {
-        get(Urls.currentUser) {
+        get(Urls.User.currentUser) {
             val currentUser = call.getUserIdPrincipal()?.name?.let { email -> getUserByEmailUseCase.getUser(email) }
                 ?: throw Exception("invalid token")
             call.respond(currentUser)

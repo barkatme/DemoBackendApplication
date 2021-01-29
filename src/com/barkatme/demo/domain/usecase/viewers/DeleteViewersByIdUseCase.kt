@@ -17,7 +17,7 @@ class DeleteViewersByIdUseCase(
 ) {
     suspend fun deleteViewers(userId: Int, viewerId: Int, requesterEmail: String?) = withContext(Dispatchers.IO) {
         val currentUser = requesterEmail?.let { userRepository.getByEmail(it) } ?: throw Exception("invalid email")
-        val permissions = permissionRepository.getUrlPermissions(Urls.deleteViewer)
+        val permissions = permissionRepository.getUrlPermissions(Urls.Viewer.deleteViewer)
         val rolePermissions = roleRepository.getPermissions(currentUser.role)
         if (rolePermissions.containsAll(permissions)) {
             userRelationRepository.deleteViewer(viewerId, userId)

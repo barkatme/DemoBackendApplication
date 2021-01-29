@@ -1,7 +1,6 @@
 package com.barkatme.demo.infrastructure.module
 
 import com.auth0.jwt.exceptions.TokenExpiredException
-import com.barkatme.demo.data.DatabaseFactory
 import com.barkatme.demo.domain.Urls
 import com.barkatme.demo.domain.model.Credentials
 import com.barkatme.demo.domain.model.Token
@@ -44,7 +43,7 @@ fun Application.authModule(@Suppress("UNUSED_PARAMETER") testing: Boolean = fals
         val signOutUseCase: SignOutUseCase = get()
         val getUserByEmailUseCase: GetUserByEmailUseCase = get()
 
-        post(Urls.signIn) {
+        post(Urls.Auth.signIn) {
             val post = call.receive<Credentials>()
             val token = signInUseCase.signIn(
                 post.email,
@@ -62,7 +61,7 @@ fun Application.authModule(@Suppress("UNUSED_PARAMETER") testing: Boolean = fals
             call.respond(mapOf("token" to token))
         }
 
-        post(Urls.signUp) {
+        post(Urls.Auth.signUp) {
             val credentials = call.receive<Credentials>()
             val userWithEmailAndPassword = User(email = credentials.email, passwordHash = credentials.password)
             val resultUser = signUpUseCase.signUp(userWithEmailAndPassword) {
@@ -71,7 +70,7 @@ fun Application.authModule(@Suppress("UNUSED_PARAMETER") testing: Boolean = fals
             call.respond(Token(resultUser.token ?: throw Exception("token is null")))
         }
 
-        get(Urls.signOut) {
+        get(Urls.Auth.signOut) {
             val currentUser = call.getUserIdPrincipal()?.name?.let { email -> getUserByEmailUseCase.getUser(email) }
                 ?: throw Exception("invalid token")
             val newToken = signOutUseCase.signOut(currentUser.email) { simpleJwt.sign(currentUser.email) }

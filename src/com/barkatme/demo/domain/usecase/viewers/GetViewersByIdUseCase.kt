@@ -16,7 +16,7 @@ class GetViewersByIdUseCase(
 ) {
     suspend fun getViewers(id: Int, requesterEmail: String?) = withContext(Dispatchers.IO) {
         val currentUser = requesterEmail?.let { userRepository.getByEmail(it) } ?: throw Exception("invalid email")
-        val permissions = permissionRepository.getUrlPermissions(Urls.viewersById)
+        val permissions = permissionRepository.getUrlPermissions(Urls.Viewer.viewersById)
         val rolePermissions = roleRepository.getPermissions(currentUser.role)
         if (rolePermissions.containsAll(permissions)) {
             userRelationRepository.getViewers(id)
