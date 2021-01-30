@@ -29,14 +29,15 @@ class HerokuChatRepository : ChatRepository {
 
     override suspend fun newMessage(message: Message) {
         val entity = message.asMessageEntity()
-        dbQuery {
+        val id = dbQuery {
             Messages.insert {
                 it[nickName] = entity.nickName
                 it[text] = entity.text
             } get Messages.id
         }
+        val sendMessage = message.copy(id = id)
         sendScope.launch {
-            msgFlow.emit(message)
+            msgFlow.emit(sendMessage)
         }
     }
 }

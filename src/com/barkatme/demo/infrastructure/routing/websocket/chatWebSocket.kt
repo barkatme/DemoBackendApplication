@@ -40,7 +40,7 @@ fun Routing.chatWebSocket() {
             .mapNotNull { it as? Frame.Text }
             .collect { frame ->
                 val message = frame.readText().also {
-                    print("incoming message: $it")
+                    println("incoming message: $it")
                 }.asMessage()
                 newMessageUseCase.newMessage(message)
             }
